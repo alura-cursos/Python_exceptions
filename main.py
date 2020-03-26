@@ -51,8 +51,8 @@ class ContaCorrente:
     @property
     def saldo(self):
         return self.__saldo
-
-    def __set_saldo(self, value):
+    @saldo.setter
+    def saldo(self, value):
       if not isinstance(value, int):
             raise ValueError("O atributo saldo deve ser um inteiro")
         if value <= 0:
