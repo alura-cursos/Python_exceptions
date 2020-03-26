@@ -60,11 +60,17 @@ class ContaCorrente:
 
 
     def transferir(self, valor, favorecido):
+        if valor < 0:
+            raise ValueError("O valor a ser depositado não pode ser menor que zero")
+        
+        self.sacar(valor)
         favorecido.depositar(valor)
     
     def sacar(self, valor):
+        if valor<0:
+            raise ValueError("O valor a ser sacado não pode ser menor que zero")
         if(self.saldo < valor):
-            raise SaldoInsuficienteError
+            raise SaldoInsuficienteError("",saldo=self.saldo, valor=valor)
         self.saldo -= valor
 
     def depositar(self, valor):
@@ -92,7 +98,9 @@ def main():
 #if __name__ == "__main__":
 #    main()
 
-conta_corrente = ContaCorrente(None, 400, 1234567)
-conta_corrente.depositar(50)
-conta_corrente.sacar(250)
-print("Saldo: ", conta_corrente.saldo)
+conta_corrente1 = ContaCorrente(None, 400, 1234567)
+conta_corrente2 = ContaCorrente(None, 401, 1234568)
+
+conta_corrente1.transferir(110, conta_corrente2)
+print("Conta Corrente1 Saldo: ",conta_corrente1.saldo)
+print("Conta Corrente2 Saldo: ",conta_corrente2 .saldo)
