@@ -22,3 +22,7 @@ def testa_divisao(divisor):
 try:
     print("O fluxo está aqui")
     raise ValueError
+except Exception:
+    print("Agora ele foi pra cá")
+
+print("E enfim ele continua...")
