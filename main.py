@@ -88,5 +88,10 @@ def main():
             print(f"\n\n {len(contas)} conta(s) criadas")
             sys.exit()
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
+
+conta_corrente = ContaCorrente(None, 400, 1234567)
+conta_corrente.depositar(50)
+conta_corrente.sacar(50)
+print("Saldo: ", conta_corrente.saldo)
