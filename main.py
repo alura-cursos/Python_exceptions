@@ -1,4 +1,4 @@
-from pprint import pprint
+from exceptions import SaldoInsuficienteError
 
 class Cliente:
     def __init__(self, nome, cpf, profissao):
@@ -55,8 +55,7 @@ class ContaCorrente:
     def saldo(self, value):
         if not isinstance(value, int):
             raise ValueError("O atributo saldo deve ser um inteiro")
-        if value <= 0:
-            raise ValueError("O atributo saldo deve ser maior que zero")
+        
         self.__saldo = value
 
 
@@ -64,6 +63,8 @@ class ContaCorrente:
         favorecido.depositar(valor)
     
     def sacar(self, valor):
+        if(self.saldo < valor):
+            raise SaldoInsuficienteError
         self.saldo -= valor
 
     def depositar(self, valor):
@@ -93,5 +94,5 @@ def main():
 
 conta_corrente = ContaCorrente(None, 400, 1234567)
 conta_corrente.depositar(50)
-conta_corrente.sacar(50)
+conta_corrente.sacar(250)
 print("Saldo: ", conta_corrente.saldo)
