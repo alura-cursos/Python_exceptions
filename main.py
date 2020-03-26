@@ -113,14 +113,5 @@ def main():
 #     breakpoint()
 #     pass
 
-try:
-    leitor = LeitorDeArquivo("arquivo.txt")
+with LeitorDeArquivo("arquivo.txt") as leitor:
     leitor.ler_proxima_linha()
-    leitor.ler_proxima_linha()
-    leitor.ler_proxima_linha()
-
-except IOError:
-    print("Exceção do tipo IOError capturada e tratada")
-finally:
-    if "leitor" in locals():
-        leitor.fechar()

@@ -1,7 +1,6 @@
 class LeitorDeArquivo:
     def __init__(self, arquivo):
         self.arquivo = arquivo
-        raise FileNotFoundError
         print(f'Abrindo arquivo: {self.arquivo}')
     
     def ler_proxima_linha(self):
@@ -11,3 +10,9 @@ class LeitorDeArquivo:
 
     def fechar(self):
         print('Fechando arquivo.')
+    
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, type, valor, traceback):
+        print("fechando arquivo")
